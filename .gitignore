@@ -1,0 +1,5 @@
+*.un~
+*.pyc
+*.swp
+env
+settings_local.py
