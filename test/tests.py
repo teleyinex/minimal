@@ -18,13 +18,15 @@ class Test:
 
     @classmethod
     def tearDownClass(self):
-        """Delete previously created random page"""
+        """Delete created pages for the tests"""
+        # Delete random page
         os.remove("web/templates/{}".format(self.file_name))
 
-    def test_01_index(self):
-        """Test index page works"""
+    def test_01_index_template(self):
+        """Test index template page works"""
         res = self.webapp.get('/')
         assert '<h1>Hello, world!</h1>' in res.data, res.data
+        assert '<h2>Heading Template</h2>' in res.data, res.data
 
     def test_02_header(self):
         """Test <head> section is included"""

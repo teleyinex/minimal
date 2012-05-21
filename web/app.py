@@ -47,7 +47,10 @@ def global_template_context():
 # Show the index page
 @app.route('/')
 def index():
-    return render_template('index.html')
+    try:
+        return render_template('index.html')
+    except:
+        return render_template('index.html.template')
 
 
 @app.route('/<page>')
