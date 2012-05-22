@@ -1,0 +1,10 @@
+# Activate the virtual env
+activate_this = '/home/user/minimal/env/bin/activate_this.py'
+execfile(activate_this, dict(__file__=activate_this))
+# Import sys to add the path of minimal
+import sys
+sys.path.insert(0,'/home/user/minimal')
+# Run the web-app
+from minimal.app import app as application
+# Uncomment to see the errors in the Apache log file
+# application.debug = True

@@ -12,7 +12,7 @@ class Test:
         self.file_name = str(random.randint(0,100)) + "_test.html"
         self.msg = str(random.randint(0,1000)) + "Random Test"
         # Create a random page to be served by the server
-        f = open("web/templates/" + self.file_name ,"w")
+        f = open("minimal/templates/" + self.file_name ,"w")
         f.write(self.msg)
         f.close()
 
@@ -20,7 +20,7 @@ class Test:
     def tearDownClass(self):
         """Delete created pages for the tests"""
         # Delete random page
-        os.remove("web/templates/{}".format(self.file_name))
+        os.remove("minimal/templates/{}".format(self.file_name))
 
     def test_01_index_template(self):
         """Test index template page works"""
@@ -40,6 +40,8 @@ class Test:
         res = self.webapp.get('/')
         assert 'bootstrap.css' in res.data, res.data
         assert 'bootstrap-responsive.css' in res.data, res.data
+        # Check that the Blueprint is serving the static data
+        assert 'assets/static' in res.data, res.data
 
     def test_04_googleanalytics(self):
         """Test Google Analaytics is included"""

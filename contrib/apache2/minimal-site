@@ -1,0 +1,14 @@
+<VirtualHost *:80>
+    ServerName example.com
+
+    DocumentRoot /home/user/minimal
+    WSGIDaemonProcess pybossa user=user1 group=group1 threads=5
+    WSGIScriptAlias / /home/user/pybossa/contrib/minimal.wsgi
+
+    <Directory /home/user/minimal>
+        WSGIProcessGroup minimal 
+        WSGIApplicationGroup %{GLOBAL}
+        Order deny,allow
+        Allow from all
+    </Directory>
+</VirtualHost>
